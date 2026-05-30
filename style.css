@@ -774,60 +774,51 @@ a {
 
 /* --- Media Queries: 모바일 / 태블릿 세로 (768px 이하) --- */
 @media (max-width: 768px) {
-    .mobile-only {
-        display: block;
+    
+    /* 1. 모바일 메뉴의 평소 상태 (숨김) */
+    .mobile-menu {
+        display: block;                /* 기본 블록 요소로 지정 */
+        position: fixed;               /* 상단 바 아래에 고정하기 위해 fixed 사용 */
+        top: -100%;                    /* ★ 평소에는 화면 위쪽 바깥으로 숨겨놓음 */
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        padding: 2rem var(--spacing-lg);
+        box-shadow: var(--shadow-md);
+        z-index: 999;                  /* 네비바(1000) 바로 아래 레이어 배치 */
+        transition: top var(--transition); /* 열리고 닫힐 때 부드러운 애니메이션 효과 */
+        
+        /* 메뉴 링크들을 정직하게 세로로 나열 */
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
     }
 
-    /* 모바일에서는 PC용 상단 메뉴를 숨깁니다 */
+    /* 모바일 메뉴 안의 링크 글자 스타일 */
+    .mobile-menu a {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    /* 2. ★ 자바스크립트로 인해 active 클래스가 붙으면 아래로 스르륵 내려옵니다 */
+    .mobile-menu.active {
+        top: 60px; /* 네비게이션 바 높이만큼 적절히 내려서 밀착시킵니다. (환경에 맞춰 수치 조절 가능) */
+    }
+
+    /* 3. 모바일 화면이므로 상단 PC용 링크들은 확실히 가려줍니다 */
     .nav-links {
-        display: none;
+        display: none !important;
     }
 
-    /* 숨겨두었던 3줄 햄버거 버튼을 모바일 화면에서만 노출합니다 */
+    /* 4. 햄버거 버튼 노출 */
     .mobile-menu-btn {
         display: block;
-    }
-
-    .hero {
-        height: auto;
-        padding-bottom: 4rem;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    h2 {
-        font-size: 1.8rem;
-        word-break: keep-all;
-    }
-
-    .meeting-item {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1.5rem;
-    }
-
-    .meeting-time {
-        align-items: flex-start;
-        flex-direction: row;
-        width: 100%;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid var(--bg-light);
-    }
-
-    .timeline::before {
-        left: 0;
-    }
-
-    .timeline {
-        padding-left: 20px;
-    }
-
-    .timeline-dot {
-        left: -36px;
-        width: 24px;
-        height: 24px;
-        font-size: 0.8rem;
+        background: none;
+        border: none;
+        cursor: pointer;
     }
 }
