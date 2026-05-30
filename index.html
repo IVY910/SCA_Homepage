@@ -387,6 +387,24 @@
 
     <!-- Scripts -->
     <script src="script.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // 1. 기존 Lucide 아이콘 활성화 코드
+        lucide.createIcons();
+
+        // 2. ★ 햄버거 버튼 클릭 시 모바일 메뉴 열고 닫기 코드를 아래로 교체하세요
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                // 버튼과 모바일 메뉴 전체에 'active' 클래스를 토글합니다.
+                menuBtn.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+        }
+    </script>
+
 </body>
 
 </html>
