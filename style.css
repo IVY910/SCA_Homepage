@@ -777,7 +777,6 @@ a {
     
     /* 1. 모바일 메뉴의 평소 상태 (숨김) */
     .mobile-menu {
-        display: block;                /* 기본 블록 요소로 지정 */
         position: fixed;               /* 상단 바 아래에 고정하기 위해 fixed 사용 */
         top: -100%;                    /* ★ 평소에는 화면 위쪽 바깥으로 숨겨놓음 */
         left: 0;
